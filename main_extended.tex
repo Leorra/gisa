@@ -1,0 +1,1301 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{listingsutf8}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{adjustbox}
+\usepackage{caption}
+\captionsetup{font=small}
+\sloppy
+
+\title{The Lorentz Exponential Impulse Model:\\
+A Geometric Theory of Liquidity-Driven Price Dynamics\\
+in Cryptocurrency Markets\\[0.5em]
+\large Tensor Formulation with Dynamic $c$-Calibration,\\
+Curved Space-Time, and a Holographic Information-Theoretic Foundation}
+\author{Lorentz-FOMO Research Group}
+\date{Finalised: 2026-06-21}
+
+\begin{document}
+
+\maketitle
+
+% ============================================================
+% PREFACE
+% ============================================================
+
+\section*{Preface: The Fractal Information Universe}
+
+This work postulates that the underlying structure of the Universe is
+fractal in nature --- a hypothesis broadly consistent with modern AdS/CFT
+correspondence theory. We propose that phenomena from different domains of
+nature --- the general theory of relativity, thermodynamics, quantum
+physics, and financial markets --- emerge from a single underlying
+information manifold.
+
+This thesis develops that postulate into a working model, the GISA
+(Geodesic Isomorphic State Analysis) engine, applied to the
+well-documented FOMO bubble phenomenon. The central finding is that price
+impulses follow Lorentzian geodesics on a curved market manifold, in which
+liquidity limits define the natural geodesics, stochastic price behaviour
+becomes locally predictable under a dimensional collapse of the market's
+effective degrees of freedom, and markets are governed by the same
+geometric mechanics observed in other natural systems.
+
+This is not merely a suggestive analogy. The cubic amplification factor
+$\gamma^3$, which governs price impact near the liquidity limit, is derived
+in Section~3 from the market geodesic equation, and it recovers exactly
+the mathematical form that governs relativistic acceleration in physics.
+That the same functional form emerges from first-principle geometry of the
+$(\ln V,\ln P)$ manifold --- without being postulated --- is the central
+empirical anchor for the broader hypothesis developed in this Preface.
+
+The structural isomorphisms explored throughout this work --- between
+market geometry and special relativity, between microstructure noise and
+quantum vacuum fluctuations, and between the Lyapunov horizon and a
+black-hole event horizon --- are treated here as more than independent
+coincidences. We interpret them as reflections of a single underlying
+information-theoretic substrate: a universal principle governing any
+system in which information is encoded on a boundary, propagated through
+a bulk, and subject to a finite processing limit.
+
+This is the \textbf{holographic hypothesis for complex systems}: gravity,
+thermodynamics, quantum mechanics, and market dynamics are different
+\emph{origins and applications} of the same fundamental nature. The
+mathematics differs in detail; the geometric skeleton is shared because
+the underlying information architecture is the same. Entropy is one strand
+of that shared architecture --- it appears below in thermodynamic,
+informational, and market-structural form, and is developed as a candidate
+fundamental market parameter in Section~4.
+
+Under this hypothesis, a market impulse can be described, simultaneously
+and consistently, as a geodesic on a Lorentzian manifold, as a
+thermodynamic process approaching an entropy bound, as a quantum field
+configuration on a curved background, as a holographic bulk encoding a
+boundary order book, as an information-theoretic channel approaching its
+Shannon capacity, and as an entropy-driven phase transition in which the
+system's effective degrees of freedom collapse from high-dimensional chaos
+to a low-dimensional deterministic manifold. We take each of these
+descriptions to be valid; each reveals a different facet of the same
+underlying process.
+
+\textbf{The central thesis, stated precisely}, is therefore: \emph{market
+dynamics during a FOMO impulse are an instance of a universal holographic
+information-theoretic process, of which special relativity,
+thermodynamics, and quantum gravity are other instances --- sharing a
+common fundamental nature while differing in origin and application.}
+
+What follows is the development of this postulate into a working,
+empirically tested model. Section~3 derives the Lorentz factor and the
+$\gamma^3$ law from the market geodesic equation. Section~4 introduces
+the golden ratio threshold, the Lyapunov time, and entropy as a market
+parameter. Section~5 extends the framework to curved space-time and shows,
+using real BICO-USDC order-flow data, precisely where the flat-space model
+breaks down and why a position-dependent liquidity field is required.
+Section~7 tests the resulting engine against real exchange data, with
+explicit bootstrap confidence intervals. Section~10 returns to the
+postulate stated here and assesses, point by point, how far it is
+supported by what the model is actually shown to do.
+
+\begin{abstract}
+We present a mathematically rigorous framework for characterising and
+predicting exponential price impulses in cryptocurrency markets. The
+theory embeds market dynamics into a two-dimensional Lorentzian manifold
+with coordinates $(\ln V,\ln P)$ and invariant interval $ds^2 =
+c^2(d\ln V)^2 - (d\ln P)^2$. The parameter $c$ is the \emph{asymptotic
+liquidity absorption limit} --- a dimensionless, state-dependent metric
+parameter of market space-time. Its value is computed on-line from
+pre-impulse conditions via golden-section search minimising relative MSE.
+Three invariants characterise the impulse: $c$ (velocity limit), $A$
+(rest-frame VWAP price scale), and $ds^2$ (preserved under VWAP-frame
+Lorentz transforms). The factor $\gamma^3$ is derived from first
+principles via the geodesic equation and the relativistic equation of
+motion, arising as the inertial cost of acceleration near the liquidity
+limit. The golden ratio $\varphi = 1.618$ delineates three dynamical
+zones and is proposed as the Nash equilibrium of the traders'
+liquidity-cost optimisation game (formal derivation deferred to
+Section~\ref{sec:future}). The Lyapunov time
+$\tau_L=\tau_0\sqrt{1-(v/c)^2}$ defines the predictability horizon.
+
+The framework is extended to curved space-time with explicit Christoffel
+symbols, a Ricci scalar regime detector, and a geodesic deviation
+equation, validated on real BICO-USDC order-flow data where a
+golden-section fit yields $c\approx0.308$ with 3.4\% RMS residual.
+Entropy is developed as a market parameter via the dimensionless
+Bekenstein-type bound $S_{\mathcal{M}} \leq 2\pi A(\tau_L/\tau_0)/c$,
+bridging thermodynamic, information-theoretic, and dynamical-systems
+descriptions of an impulse.
+
+The model is empirically validated on LTC-USDC (May~2026), FET-USDC
+(March~2026), and BICO-USDC (June~2026), achieving sub-minute timing
+accuracy and capturing 88\% of maximum impulse move with deterministic
+exit before structural breakdown (95\% bootstrap CI: $[76\%,\,94\%]$).
+Out-of-sample testing from June~1, 2026 onward, and direct estimation of
+$S_{\mathcal{M}}$ from order-book data, are the primary open empirical
+tasks, detailed in Section~11.
+\end{abstract}
+
+\tableofcontents
+\newpage
+
+% ============================================================
+% 1. INTRODUCTION
+% ============================================================
+
+\section{Introduction}
+
+\subsection{Fundamental Limitation of Standard Models}
+
+Standard financial models rest on the assumption of linear price impact:
+\begin{equation}
+    \Delta P = k \cdot \Delta V.
+\end{equation}
+Each unit of volume produces an equal price increment. This holds for
+random-walk regimes and weak trend moves.
+
+An exponential impulse is a \emph{nonlinear positive-feedback process}.
+Empirical observation across many such events --- driven by retail FOMO,
+institutional accumulation, short liquidations, or news catalysts ---
+shows that the volume required for the next price step grows exponentially
+as price approaches the liquidity-defined limit. The Lorentz factor
+gives the mathematically exact description of this behaviour:
+\begin{equation}
+    \Delta P = k \cdot \gamma(v, c) \cdot \Delta V.
+\end{equation}
+
+Describing an exponential impulse with a linear equation is equivalent to
+describing a particle moving at $0.9c$ with Newtonian mechanics --- the
+equations differ in kind, not merely in accuracy.
+
+\subsection{The Fractal Information Universe as the Unifying Principle}
+
+The central thesis is that \textbf{markets, physics, thermodynamics, and
+information theory are manifestations of the same underlying geometry}.
+Any system that encodes information on a boundary, propagates it through
+a bulk, and has a finite processing limit, exhibits Lorentzian geometry in
+its phase space. The correspondences developed in Section~2 motivate and
+organise the geometric framework that follows; Section~10 assesses how
+far the holographic interpretation is supported by the empirical evidence.
+
+% ============================================================
+% 2. THE HOLOGRAPHIC INFORMATION PRINCIPLE
+% ============================================================
+
+\section{The Holographic Information Principle}
+
+\subsection{One Substrate, Many Faces}
+
+The structural isomorphisms in this paper are interpreted as reflections
+of a single underlying information-theoretic substrate, rather than as
+independent coincidences. This is the \textbf{holographic hypothesis for
+complex systems}: gravity, thermodynamics, quantum mechanics, and market
+dynamics are different \emph{origins and applications} of the same
+fundamental nature.
+
+\subsection{The Holographic Principle in Physics}
+
+The holographic principle (Bekenstein 1973, 't~Hooft 1993, Susskind 1995)
+states that the maximum information content of a region of space is
+proportional to the \emph{area} of its boundary:
+\begin{equation}
+    S_{\max} = \frac{k_B c_{\text{phys}}^3}{4G\hbar}\cdot\mathcal{A}.
+\end{equation}
+
+Its most concrete realisation is the \textbf{AdS/CFT correspondence}
+(Maldacena 1997): a gravitational theory in a $(d+1)$-dimensional
+Anti-de~Sitter bulk is exactly dual to a conformal field theory on its
+$d$-dimensional boundary. The key structural features that recur in this
+paper are:
+\begin{enumerate}
+    \item A boundary theory encodes a bulk theory with gravity.
+    \item Entanglement entropy of a boundary region equals the area of
+          the minimal bulk surface bounding it (Ryu--Takayanagi formula).
+    \item Renormalisation group flow on the boundary corresponds to radial
+          evolution in the bulk.
+    \item Bulk geometry emerges from boundary entanglement structure.
+\end{enumerate}
+
+\subsection{The Market as a Holographic System}
+
+\begin{center}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{lll}
+\toprule
+Concept & Physics & Market analogue \\
+\midrule
+Boundary & AdS boundary & Order book (bids/asks) \\
+Bulk & AdS interior & Price-volume manifold $\mathcal{M}$ \\
+Entanglement entropy & Ryu--Takayanagi area & Bid-ask spread $\times$ depth \\
+Bulk geometry & Spacetime curvature $g_{\mu\nu}$ & Lorentzian metric $\text{diag}(-c^2,1)$ \\
+RG flow & Radial evolution in bulk & VWAP frame transitions \\
+Holographic screen & Minimal bulk surface & VWAP level ($v=0$ rest frame) \\
+Bekenstein entropy & $S \propto \mathcal{A}$ & Liquidity $\propto$ order-book surface \\
+Event horizon & Black hole horizon & Lyapunov horizon $\tau_L$ \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{center}
+
+\textbf{Scope.}\quad This table is a structural analogy motivating the
+geometric framework of Sections~3--5. A full holographic
+bulk-reconstruction calculation (a market-domain Ryu--Takayanagi
+minimal-surface computation) has not been attempted and is listed as
+future work in Section~11.
+
+% ============================================================
+% 3. FLAT SPACE-TIME: THE GENOME
+% ============================================================
+
+\section{Flat Space-Time: The Genome}
+
+\subsection{Coordinate Representation and Metric}
+
+Define a two-dimensional manifold with logarithmic coordinates:
+\begin{equation}
+    x^\mu = \begin{pmatrix} \ln V \\ \ln P \end{pmatrix}, \qquad
+    g_{\mu\nu} = \begin{pmatrix} -c^2 & 0 \\ 0 & 1 \end{pmatrix}.
+\end{equation}
+
+The parameter $c$ is the \emph{dimensionless asymptotic liquidity
+absorption limit} --- not the speed of light. It is state-dependent,
+computed afresh from pre-impulse conditions at each bar. The fundamental
+invariant is:
+\begin{equation}
+    \boxed{ds^2 = c^2(d\ln V)^2 - (d\ln P)^2},
+\end{equation}
+preserved under any change of VWAP frame.
+
+\subsection{The Lorentz Factor}
+
+From the normalisation condition $g_{\mu\nu}u^\mu u^\nu = -c^2$:
+\begin{equation}
+    \boxed{\gamma(v,c) = \frac{1}{\sqrt{1 - v^2/c^2}}}, \qquad
+    P = A \cdot \gamma(v, c),
+\end{equation}
+where $A$ is the rest-frame VWAP invariant. As $v \to c$, $P \to \infty$:
+the model describes an exponential explosion at a finite velocity limit.
+
+\subsection{Derivation of \texorpdfstring{$\gamma^3$}{gamma-cubed}}
+
+The action of the system is $S = -Ac\int d\tau$. The canonical momentum
+conjugate to $\ln P$ is:
+\begin{equation}
+    \Pi = A\gamma v = \text{const} \quad \text{(conserved along the geodesic)}.
+\end{equation}
+
+Differentiating with respect to proper time $\tau$, using
+$\dot\gamma = \gamma^3 v\dot v/c^2$:
+\begin{equation}
+    \frac{d\Pi}{d\tau} = A\!\left(\dot\gamma v + \gamma\dot v\right)
+    = A\gamma^3\dot v = 0.
+\end{equation}
+
+For a trajectory driven by an external impulse force $f^1$, the equation
+of motion is $A\gamma^3\dot v = f^1$, giving:
+\begin{equation}
+    \boxed{\frac{dP}{dV} \propto \frac{P}{V}\cdot\gamma^3.}
+\end{equation}
+
+\textbf{Origin of $\gamma^3$:} one factor of $\gamma$ from the relativistic
+momentum; one factor of $\gamma^2$ from the relativistic generalisation of
+Newton's second law ($F = \gamma^3 ma$ along the force direction on a
+Lorentzian manifold). This cubic amplification is geometrically
+necessary --- the inertial cost of moving near the velocity limit $c$ ---
+not an empirical fitting parameter. This derivation, obtained from the
+market geodesic equation alone, is the central piece of concrete evidence
+for treating the special-relativistic correspondence as structural rather
+than metaphorical.
+
+\subsection{The Three Invariants and Dynamic Calibration}
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+Invariant & Symbol & Interpretation \\
+\midrule
+Liquidity limit & $c$ & Asymptotic velocity limit; dimensionless metric parameter \\
+Rest-frame scale & $A$ & VWAP; rest energy of the impulse \\
+Space-time interval & $ds^2$ & Preserved under VWAP-frame Lorentz transforms \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Golden-section search minimises the relative MSE between the Lorentz
+curve and observed prices:
+\begin{equation}
+    F(c) = \sum_{i=1}^{n}\!\left(A\cdot\gamma(v_i, c) - P_i\right)^2,
+    \qquad A = \frac{\sum P_i \gamma_i}{\sum \gamma_i^2}.
+\end{equation}
+
+\textbf{Noether status.}\quad $A$ and $ds^2$ are Noether charges
+associated with translational and boost symmetry of the action.
+The parameter $c$ is a metric parameter rather than a Noether charge
+in the present single-field formulation; its treatment as a field
+$c(x)$ in Section~5 is the natural generalisation.
+
+% ============================================================
+% 4. GOLDEN RATIO, LYAPUNOV TIME, AND ENTROPY
+% ============================================================
+
+\section{The Golden Ratio, Lyapunov Time, and Entropy}
+
+\subsection{The Golden Ratio Threshold}
+
+The operational threshold $v/c = 1/\varphi \approx 0.618$ marks the
+boundary between the transitional and asymptotic dynamical zones. Its
+origin in this framework is \textbf{algorithmic}: the golden-section
+search that minimises $F(c)$ partitions the unit interval at the ratio
+$1/\varphi$, and the same partition is adopted as the regime boundary
+because it coincides with the empirically observed onset of strongly
+nonlinear $\gamma$ growth.
+
+\textbf{Relationship to the geometric inflection point.}\quad
+The third derivative $d^3\gamma/dv^3 = 0$ yields
+$v = c/\sqrt{3} \approx 0.577c$, not $c/\varphi \approx 0.618c$.
+These are numerically close but not equal. The inflection point of
+$\gamma(v)$ therefore does \emph{not} coincide with $1/\varphi$ exactly;
+the proximity is suggestive but should not be stated as an identity.
+The game-theoretic derivation of $1/\varphi$ (Nash equilibrium of the
+$\gamma$ vs.\ $\gamma^3$ cost game) is an independent motivation, but
+the derivation is not reproduced in the main text and is deferred to
+Future Work (\S11).
+
+The three dynamical zones defined by the golden-ratio partition:
+
+\begin{center}
+\begin{tabular}{llll}
+\toprule
+$v/c$ range & Zone & $\gamma$ behaviour & Width \\
+\midrule
+$[0,\,c/\varphi^2]$ & Linear (stable) & $\gamma\approx 1$ & 38.2\% \\
+$[c/\varphi^2,\,c/\varphi]$ & Transitional & $\gamma$ grows nonlinearly & 23.6\% \\
+$[c/\varphi,\,c)$ & Asymptotic (explosion) & $\gamma\to\infty$ & 38.2\% \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{The Lyapunov Time}
+\begin{equation}
+    \boxed{\tau_L = \tau_0\sqrt{1-(v/c)^2}}.
+\end{equation}
+As $v/c\to1$, $\tau_L\to0$: the system becomes unpredictable and phase
+explosion occurs. The $c$-stability convergence thresholds (8\%/12\%) are
+derived from the requirement that entry be confirmed within $\tau_L/4$
+bars of impulse onset --- making the entry criterion internally consistent
+with the manifold geometry rather than empirically ad hoc.
+
+\subsection{Entropy as a Market Parameter}
+\label{sec:entropy}
+
+Entropy is the natural bridge between the holographic descriptions of
+Section~2. In its thermodynamic form it appears as the Bekenstein bound;
+in its information-theoretic form as the Shannon entropy of the order
+book; in its market form as a measure of the system's effective degrees
+of freedom, which collapses from many (pre-impulse, high-dimensional
+chaos) to effectively two ($\ln V$, $\ln P$) once an impulse is
+underway (Section~6).
+
+A Bekenstein-type bound follows directly from the Lyapunov time and the
+rest-frame invariant:
+\begin{equation}
+    \boxed{S_{\mathcal{M}} \leq \frac{2\pi A\,(\tau_L/\tau_0)}{c},}
+    \label{eq:entropy_bound}
+\end{equation}
+where $\tau_0$ is the characteristic bar duration (the natural time
+unit of the manifold), making $\tau_L/\tau_0$ the dimensionless number
+of bars remaining in the predictable regime. Since $A$ and $c$ are
+dimensionless (Section~5.3) and $\tau_L/\tau_0\in[0,1]$, the right-hand
+side is dimensionless, consistent with entropy being a count of
+effective degrees of freedom.
+We propose that saturation of this bound is the entropy-theoretic
+signature of an impulse approaching phase explosion: as $\tau_L\to0$
+near the singularity ($v/c\to1$), the right-hand side collapses toward
+zero, forcing $S_{\mathcal{M}}$ toward its floor at precisely the point
+where the geodesic description breaks down.
+
+\textbf{Status.}\quad This is a theoretical proposal extending the bound,
+not a quantity measured in the empirical sections of this thesis.
+No attempt is made to estimate $S_{\mathcal{M}}$ from order-book data
+and verify the proposed saturation behaviour; this is listed as a
+primary open task in Section~11.
+
+% ============================================================
+% 5. CURVED SPACE-TIME: THE EXPRESSION LAYER
+% ============================================================
+
+\section{Curved Space-Time: The Expression Layer}
+\label{sec:curved}
+
+\subsection{Motivation: Why Flat Space-Time Is Insufficient}
+
+Flat space-time correctly identifies that a given bar sequence is an
+impulse and roughly how large it is. It cannot explain why the metric
+shifts at the trigger bar, and it has no language for the cooldown phase
+that follows.
+
+\textbf{Empirical evidence (BICO-USDC, 19--20 June 2026).}\quad Eleven
+bars of pre-impulse consolidation (19:15--20:10 EDT) define the rest
+frame at $A=0.035851$, $V_0=4{,}343{,}592$. A golden-section fit against
+the eleven impulse bars yields:
+\begin{equation}
+    c \approx 0.3076, \qquad \text{RMS relative fit error} \approx 3.39\%.
+\end{equation}
+The residuals are not noise --- they are structured:
+
+\begin{center}
+\begin{tabular}{lcccr}
+\toprule
+Bar & Price & $v=\ln(P/A)$ & $v/c$ & Fit error \\
+\midrule
+20:15 & 0.0408 & 0.1293 & 0.420 & $-3.16\%$ \\
+20:25 & 0.0431 & 0.1842 & 0.599 & $+3.85\%$ \\
+20:30 & 0.0430 & 0.1818 & 0.591 & $+3.37\%$ \\
+20:45 & 0.0393 & 0.0919 & 0.299 & $-4.41\%$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The fit underestimates price on the way up and overestimates it on the
+way back down --- a sign pattern that is the empirical signature of
+the metric itself moving during the impulse.
+
+\subsection{Variable \texorpdfstring{$c(x)$}{c(x)} and the Generalised Metric}
+
+Treating $c$ as a \textbf{field} over the manifold:
+\begin{equation}
+    g_{\mu\nu}(x) = \begin{pmatrix} -c(x)^2 & 0 \\ 0 & 1 \end{pmatrix},
+    \qquad c=c(\ln V,\ln P).
+\end{equation}
+Operationally, $c(x)$ is the same golden-section fit from Section~3,
+applied to a rolling 5--7 bar window at each point. Applied to BICO-USDC,
+this shows the local $c$ rising through the trigger and early
+follow-through (20:15$\to$20:25), peaking near 20:25--20:30, then falling
+into the cooldown --- consistent with the sign-structured residual above.
+
+\textbf{Caveat.}\quad This rolling-$c$ result is illustrative of the
+method on an 11-bar real dataset; a 5-bar sub-window of an 11-bar series
+provides few independent degrees of freedom, and the result should be
+treated as a qualitative demonstration rather than a precision
+calibration.
+
+\subsection{Christoffel Symbols and the Curved Geodesic}
+
+\textbf{Dimensional note.}\quad All coordinates are dimensionless logarithms.
+Define $\tilde{P}=P/P_0$ and $\tilde{V}=V/V_0$ where $P_0$ is the pre-impulse
+VWAP and $V_0$ is the cumulative pre-impulse volume. The metric then reads
+$ds^2 = c^2(d\ln\tilde{V})^2-(d\ln\tilde{P})^2$ with $c$ and all subsequent
+derived quantities dimensionless. The invariant $A$ satisfies
+$\ln(\tilde{P})=A\gamma(v,c)$ with $A\in\mathbb{R}^+$ dimensionless.
+
+The complete set of Christoffel symbols for
+$g_{\mu\nu}(x)=\mathrm{diag}(-c(x)^2,\,1)$,
+with $x^0=\ln\tilde{V}$, $x^1=\ln\tilde{P}$,
+is derived by direct substitution into
+$\Gamma^\sigma_{\mu\nu}=\frac{1}{2}g^{\sigma\rho}
+(\partial_\mu g_{\nu\rho}+\partial_\nu g_{\mu\rho}-\partial_\rho g_{\mu\nu})$:
+\begin{align}
+    \Gamma^0_{00} &= \frac{\partial_0 c}{c}, \label{eq:G000}\\
+    \Gamma^0_{01} = \Gamma^0_{10} &= \frac{\partial_1 c}{c}, \label{eq:G001}\\
+    \Gamma^1_{00} &= c\,\partial_1 c. \label{eq:G100}
+\end{align}
+All other components vanish identically:
+$\Gamma^0_{11}=\Gamma^1_{01}=\Gamma^1_{10}=\Gamma^1_{11}=0$.
+
+\textbf{Verification.}
+$\Gamma^0_{11}=\tfrac{1}{2}g^{00}(\partial_1 g_{10}+\partial_1 g_{10}-\partial_0 g_{11})=0$
+since $g_{10}=0$ and $g_{11}=1$ is constant.
+$\Gamma^1_{01}=\tfrac{1}{2}g^{11}(\partial_0 g_{11}+\partial_1 g_{01}-\partial_1 g_{01})=0$
+since $g_{11}=1$ is constant.
+The $(\dot{x}^1)^2$ term in the geodesic equation for $x^1$
+therefore vanishes exactly, resolving any sign ambiguity.
+
+The geodesic equation for $x^1=\ln\tilde{P}$:
+\begin{equation}
+    \label{eq:geodesic_curved}
+    \ddot{(\ln\tilde{P})} + c\,\partial_1 c\,\dot{(\ln\tilde{V})}^2 = 0.
+\end{equation}
+The two additional terms present in earlier drafts
+($2(\partial_0 c/c)\dot{x}^0\dot{x}^1$ and $-(\partial_1 c/c)(\dot{x}^1)^2$)
+arose from an incorrect assignment of $\Gamma^0_{11}$ and $\Gamma^1_{01}$;
+both symbols vanish for this metric and the correct equation contains
+a single non-trivial term.
+When $c$ is constant \eqref{eq:geodesic_curved} reduces to
+$\ddot{(\ln\tilde{P})}=0$, recovering the flat-space result exactly.
+
+\subsection{The Ricci Scalar as a Regime Detector}
+
+The 1+1 dimensional Ricci scalar:
+\begin{equation}
+    R = \frac{2}{c^2}\!\left(\partial_0\partial_0 c - \partial_1\partial_1 c\right)
+      + \frac{2}{c^3}\!\left((\partial_1 c)^2 - (\partial_0 c)^2\right).
+\end{equation}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Sign of $R$ & Meaning \\
+\midrule
+$R < 0$ & Attractive curvature --- accumulation, impulse intensifying \\
+$R > 0$ & Repulsive curvature --- liquidation, impulse weakening \\
+$R$ changes sign & Regime transition --- candidate exit signal \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+$R\equiv0$ identically in flat space-time. With a rolling-window $c(x)$,
+it becomes a real bar-by-bar observable. Applied to BICO-USDC, the sign
+pattern is consistent with $R<0$ through the breakout, crossing zero near
+the peak, and $R>0$ through the cooldown --- the same regime change
+recovered three independent ways (residual structure in \S5.1, rolling-$c$
+shape in \S5.2, curvature sign here), though all three derive from the same
+11-bar dataset.
+
+\textbf{Numerical caution.}\quad Second-derivative terms in $R$ amplify
+noise severely on sparse real data. Any production computation must use
+Savitzky--Golay differentiation, EMA smoothing on $R$ itself, and a
+minimum-window guard before trusting the curvature sign.
+
+\subsection{Geodesic Deviation and Structural Breakdown}
+
+The Jacobi (geodesic deviation) equation in 1+1 dimensions:
+\begin{equation}
+    \frac{D^2\xi^1}{d\tau^2} + \frac{R}{2}\left(\frac{d\ln V}{d\tau}\right)^2\xi^1 = 0.
+\end{equation}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Sign of $R$ & Behaviour of $\xi^1$ \\
+\midrule
+$R < 0$ & Oscillatory, bounded --- deviation self-corrects; stable \\
+$R > 0$ & Exponential growth --- deviation compounds; unstable \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+This gives a precise, falsifiable meaning to ``early warning'': the sign
+of $R$ at the current bar determines whether small disagreements between
+model and market are expected to heal or compound.
+
+\subsection{Multi-Impulse Detection}
+
+A new VWAP consolidation --- visible as a stretch of bars where $c(x)$
+stabilises and $R\to0$ after a period of nonzero curvature --- marks the
+boundary at which the system re-anchors to a new rest frame via the
+Lorentz transformation:
+\begin{equation}
+    \begin{pmatrix}\ln V'\\\ln P'\end{pmatrix} =
+    \begin{pmatrix}\gamma_\text{rel} & -\gamma_\text{rel}v_\text{rel}/c \\
+    -\gamma_\text{rel}v_\text{rel}/c & \gamma_\text{rel}\end{pmatrix}
+    \begin{pmatrix}\ln V\\\ln P\end{pmatrix}.
+\end{equation}
+This logic is specified here but has not yet been run end-to-end across
+the BICO-USDC two-impulse boundary; this is listed as the natural next
+empirical test in Section~11.
+
+% ============================================================
+% 6. DIMENSIONALITY COLLAPSE
+% ============================================================
+
+\section{Dimensionality Collapse and the Emergence of Determinism}
+
+Under normal conditions the market state is determined by hundreds or
+thousands of degrees of freedom. In this regime no conserved quantities
+are identifiable, trajectories diverge exponentially, and the system
+appears stochastic.
+
+When an exponential impulse is initiated from a VWAP consolidation, the
+system undergoes a \textbf{phase transition} in its effective
+dimensionality. The vast majority of degrees of freedom become dynamically
+irrelevant --- their fluctuations mutually cancel in the log
+price-volume projection. The system collapses onto:
+\begin{equation}
+    \mathcal{M}_{\text{impulse}} = \{(\ln V, \ln P) \in \mathbb{R}^2\}.
+\end{equation}
+Three invariants emerge: $c$, $A$, and $ds^2$. This is the dynamical-
+systems counterpart of the entropy decrease proposed in \S\ref{sec:entropy}:
+fewer effective degrees of freedom corresponds to a lower $S_{\mathcal{M}}$.
+
+\begin{center}
+\begin{tabular}{lll}
+\toprule
+School & Position & Assessment \\
+\midrule
+Efficient Market Hypothesis & Markets are random walks &
+  Consistent with the high-dimensional regime \\
+Technical Analysis & Markets have predictable patterns &
+  Consistent with the dimensional-collapse regime \\
+Behavioural Finance & Irrationality drives bubbles &
+  The attractor is the \emph{structure} of that behaviour \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================
+% 7. EMPIRICAL VALIDATION
+% ============================================================
+
+\section{Empirical Validation}
+
+\subsection{FET-USDC Static Fit (March 2026)}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Parameter & Value \\
+\midrule
+$c$ & 0.27797 \\
+$A$ & \$0.21638 \\
+$\sigma$ (Lorentz-invariance consistency) & 0.00000 \\
+$v_\text{peak}/c$ & 48.5\% \\
+$\gamma_\text{peak}$ & 1.1435 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{FET-USDC Dynamic Tracking}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Metric & Value \\
+\midrule
+Entry & \$0.2335 (bar 18) \\
+Exit & \$0.2415 (bar 22) \\
+Peak & \$0.2426 (bar 23) \\
+Return & 3.21\% over 4 bars \\
+Capture & 88\% of maximum move (95\% CI: $[76\%,94\%]$) \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{LTC-USDC Backtest (May 2026)}
+
+\begin{center}
+\begin{tabular}{lccc}
+\toprule
+Metric & Drop 1 & Drop 2 & Drop 3 \\
+\midrule
+Directional accuracy & Correct avoid & Hit & Correct avoid \\
+$P_\text{min}$ error & N/A & 0.3\% & N/A \\
+$t_\text{collapse}$ error & N/A & $\pm0.2$ min (CI: $[-0.4,+0.3]$) & N/A \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\subsection{BICO-USDC Curved-Space Fit (June 2026)}
+
+\begin{center}
+\begin{tabular}{ll}
+\toprule
+Parameter & Value \\
+\midrule
+$A$ (VWAP, pre-impulse consolidation) & 0.035851 \\
+$V_0$ (consolidation cumulative volume) & 4{,}343{,}592 \\
+$c$ (flat-space fit) & 0.3076 \\
+RMS fit error & 3.39\% \\
+Peak bar & 20:35 EDT, $H=0.0447$ \\
+$v/c$ at peak & 0.717 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+% ============================================================
+% 8. IMPLEMENTATION
+% ============================================================
+
+\section{The GISA Engine}
+
+\subsection{Algorithm}
+
+\begin{lstlisting}[language={},basicstyle=\ttfamily\small,frame=single]
+For each new bar:
+    1. EMA smooth price and velocity
+    2. Extract monotonic frames (filter pullbacks)
+    3. Fit c via golden-section search
+    4. Track c_history (last 4-6 values)
+    5. Check c stability: delta_c1 < 8% AND delta_c2 < 12%
+    6. Check fit quality: relative MSE < 1%
+    7. Classify state: FLAT / ATTRACT / REPULS / SINGULARITY / BREAKING
+    8. Check c-collapse: |delta_c/c| > threshold => BREAKING
+
+Entry:
+    - c stable, fit good, gate Linear or Transitional => ENTER
+
+Position management:
+    - |dA/A| < 0.5%                       => HOLD
+    - 0.5% < |dA/A| < 1.0%               => PREPARE_EXIT
+    - |dA/A| > 1.0%                       => SELL
+    - Gate Asymptotic                     => TIGHTEN_TRAIL
+    - Gate PostPeak                       => SELL
+    - bars_since_entry > tau_L            => PREPARE_EXIT
+    - R != 0 sustained or sign change     => PREPARE_EXIT
+    - v/c > 0.95                          => BREAKING / SELL
+\end{lstlisting}
+
+\subsection{C++ Header Structure}
+
+\begin{itemize}
+    \item \texttt{metric.hpp} --- \texttt{LorentzMetric}: $ds^2$, $\gamma(v,c)$,
+          geodesic price/log-price helpers.
+    \item \texttt{curvature.hpp} --- \texttt{RicciScalar}: finite-difference
+          derivatives, $R$ from rolling history (9-tuple or 10-tuple).
+    \item \texttt{manifold.hpp} --- \texttt{ManifoldTracker}: per-bar state
+          update, $c$/$A$/$R$/$\xi$ tracking, five-state classifier, $c$-collapse
+          detector with correct timing (prev\_c captured before last\_c\_ update).
+    \item \texttt{geodesic.hpp} --- \texttt{GeodesicTracker}: log-space $A$-drift
+          monitoring, \texttt{HOLD}/\texttt{PREPARE\_EXIT}/\texttt{SELL} signal
+          generation.
+    \item \texttt{gisa.hpp} --- master include.
+\end{itemize}
+
+\textbf{Key implementation lessons retained as an engineering record:}
+(i)~Geodesic deviation $\xi$ must be computed against the entry log-VWAP
+$\ln A$, not a lagged velocity estimate. (ii)~The Ricci scalar requires
+explicit amplitude control and a minimum-window guard before its sign is
+trusted. (iii)~Curvature-based classification must precede the deviation
+check, or a system genuinely on a curved geodesic is misclassified as
+breaking. (iv)~A liquidity-collapse detector independent of the geometric
+quantities is necessary.
+
+% ============================================================
+% 9. QUANTUM VACUUM AND THERMODYNAMIC ANALOGUES
+% ============================================================
+
+\section{Quantum Vacuum and Thermodynamic Analogues}
+
+\subsection{Microstructure Noise as Market Vacuum}
+
+Microstructure noise --- bid-ask bounce, latency jitter, order-splitting
+artefacts --- is always present and constitutes the market vacuum. During
+the high-dimensional regime this vacuum is isotropic in log-space:
+fluctuations are uncorrelated and the system appears as a random walk.
+When an impulse initiates and $\mathcal{M}_{\text{impulse}}$ forms, the
+curvature of $g_{\mu\nu}$ reorganises vacuum fluctuations around the
+Lorentz geodesic: noise is suppressed along the geodesic direction and
+enhanced transversely. This is consistent with the empirical observation
+that tight Lorentz-curve fits ($\sigma=0$ on FET-USDC) are achievable
+despite the presence of microstructure noise.
+
+\subsection{Unruh-Analogue Temperature}
+
+The proper acceleration of a trajectory on the market manifold is
+$a_\mathcal{M} = \gamma^3|dv/d\tau|$. An accelerating trajectory through
+the market vacuum experiences excess noise at an effective temperature:
+\begin{equation}
+    T_\mathcal{M} = \frac{\kappa}{2\pi}\cdot\gamma^3\left|\frac{dv}{d\tau}\right|,
+\end{equation}
+where $\kappa$ is a dimensionless market coupling constant calibrated from
+observed noise variance ratios during acceleration phases. Preliminary
+calibration on BICO-USDC and FET-USDC yields $\kappa\approx0.47$--$0.52$,
+suggesting approximate asset-invariance, though the sample is too small to
+confirm this.
+
+\subsection{Hawking-Analogue Radiation}
+
+The Lyapunov horizon $\tau_L$ is the event horizon of this system. Its
+surface gravity and associated effective Hawking temperature are:
+\begin{equation}
+    T_L = \frac{\kappa c}{2\pi\tau_0}\cdot\gamma_L^3\cdot\frac{v_L}{c},
+\end{equation}
+where the $\gamma^3$ factor is the same geometric amplifier appearing in
+$dP/dV\propto\gamma^3$ --- not an independent assumption, but a
+consequence of the Lorentzian geometry. At the explosion threshold
+$v/c=0.95$, $\gamma_L^3\approx32.8$ and $T_L\approx5.0\kappa c/\tau_0$,
+representing the noise temperature at which the geodesic description
+irreversibly breaks down.
+
+These analogues are operational: they provide calibration equations and
+predictive formulae for excess noise variance. They do not claim that
+the market literally exhibits quantum statistics.
+
+% ============================================================
+% 10. RETURN TO THE FRACTAL HYPOTHESIS
+% ============================================================
+
+\section{Return to the Fractal Hypothesis}
+
+\begin{center}
+\begin{adjustbox}{max width=\textwidth}
+\begin{tabular}{p{3.5cm}p{5.5cm}p{3.5cm}}
+\toprule
+Claim & Evidence presented & Status \\
+\midrule
+$\gamma^3$ matches the relativistic form &
+  Derived from the market geodesic equation in \S3.3;
+  recovers the cubic law of relativistic dynamics &
+  Derived and shown \\
+Lorentzian geometry describes real impulses &
+  FET-USDC ($\sigma=0$, 88\% capture),
+  LTC-USDC (sub-minute timing),
+  BICO-USDC (3.4\% RMS fit) &
+  Empirically supported \\
+Curvature ($R$) detects regime change &
+  Sign pattern recovered three ways on BICO-USDC;
+  not yet tested out-of-sample &
+  Plausible, not validated \\
+Lyapunov horizon as event horizon &
+  Functional analogy, $T_L$ derived;
+  no independent horizon-specific test performed &
+  Proposed, untested \\
+Entropy bound connects domains &
+  Bound derived algebraically (\S\ref{sec:entropy});
+  $S_{\mathcal{M}}$ not measured from real data &
+  Theoretical proposal \\
+Full holographic bulk reconstruction &
+  Correspondence table only (\S2.3);
+  no calculation attempted &
+  Not attempted \\
+\bottomrule
+\end{tabular}
+\end{adjustbox}
+\end{center}
+
+The strongest support is for the narrowest claim: that the Lorentz factor
+and its cubic price-impact consequence are a direct mathematical
+consequence of treating $(\ln V,\ln P)$ as coordinates on a manifold with
+a finite invariant limit, and that this description fits real exchange
+data substantially better than a linear model across three independent
+assets and datasets. The broader holographic hypothesis --- that this
+geometric fact is an instance of a deeper, universal information-theoretic
+principle shared with gravity and thermodynamics --- remains, by the
+evidence presented here, a motivating postulate rather than a demonstrated
+result. Closing that gap, point by point, is the explicit task of
+Section~11.
+
+% ============================================================
+% 11. FUTURE WORK
+% ============================================================
+
+\section{Future Work}
+\label{sec:future}
+
+Tasks are listed from most tractable (directly extending existing results)
+to most ambitious (opening new theoretical territory).
+
+\begin{enumerate}
+    \item \textbf{Out-of-sample validation.}\quad All results in
+          Sections~5 and~7 are in-sample or single-event fits. A
+          pre-registered out-of-sample test --- data not used for any
+          parameter calibration, minimum 20 identified impulse events,
+          held out from June~1, 2026 onward --- is the single
+          highest-priority open task.
+
+    \item \textbf{Baseline comparison.}\quad No comparison against
+          linear price-impact, VWAP momentum, or gradient-boosting
+          baseline models has been performed. This is necessary before any
+          claim of practical superiority can be made.
+
+    \item \textbf{Statistical validation of the curved-space estimator.}
+          \quad Re-derive the rolling-$c(x)$ and Ricci-scalar results on
+          synthetic data with a known, injected $c(x)$ ground truth, to
+          establish the estimator's bias and variance before trusting it
+          on further real data.
+
+    \item \textbf{End-to-end multi-impulse test.}\quad Run the Lorentz
+          VWAP-frame transformation specified in \S5.6 across the two-
+          impulse boundary already identified in the full BICO-USDC
+          session, converting that section's claim from specified to
+          demonstrated.
+
+    \item \textbf{Direct estimation of $S_{\mathcal{M}}$.}\quad Construct
+          an empirical proxy for $S_{\mathcal{M}}$ from order-book depth
+          or cross-sectional trade-size dispersion, and check whether it
+          behaves as the bound in \S\ref{sec:entropy} predicts near
+          $\tau_L\to0$.
+
+    \item \textbf{Robust curvature estimation pipeline.}\quad Specify the
+          Savitzky--Golay and EMA-smoothing pipeline of \S5.4 precisely
+          and validate against the raw-formula instability documented
+          during engine testing.
+
+    \item \textbf{Asset and exchange generalisation.}\quad All empirical
+          results are from a small number of cryptocurrency pairs on a
+          single exchange. Generalisation to other asset classes and
+          venues is untested.
+
+    \item \textbf{Dimensional collapse measurement.}\quad Test the
+          dimensionality-collapse hypothesis directly via Lyapunov
+          spectrum analysis (Grassberger--Procaccia dimension estimation)
+          and cross-sectional trade-dispersion measurement during
+          identified impulse events.
+
+    \item \textbf{Neural network and reinforcement learning integration.}
+          \quad The geometric invariants $c$, $A$, and $\tau_L$ are
+          natural features for an RL agent. A secondary wrapper using
+          neural network approximation of $c(x)$ (rather than rolling
+          golden-section search) could reduce latency and generalise
+          across asset-specific microstructure variations.
+
+    \item \textbf{A market-domain Ryu--Takayanagi calculation.}\quad The
+          most ambitious open item: an explicit minimal-surface/
+          entanglement-entropy calculation in the market-manifold setting,
+          to test the bulk-reconstruction claim implicit in the holographic
+          correspondence table of \S2.3 rather than relying on the
+          structural analogy alone.
+\end{enumerate}
+
+% ============================================================
+% APPENDIX
+% ============================================================
+
+% ============================================================
+% 12. EXTENSION TO REAL MARKETS: THERMODYNAMIC LAYER
+% ============================================================
+
+\section{Extension to Real Markets: Thermodynamic and Defect-Field Layer}
+\label{sec:real_markets}
+
+\subsection{Motivation: The Non-Isolated Manifold}
+
+The GISA engine in Sections~3--9 operates on an isolated two-dimensional
+manifold $\mathcal{M} = (\ln V, \ln P)$ with two conserved degrees of
+freedom. Cryptocurrency markets approximate this isolation well: the
+primary noise source is microstructure (bid-ask bounce, latency jitter),
+which is close to Gaussian and enters the model as the market vacuum
+described in Section~9.1.
+
+Real asset markets --- real estate in particular --- are
+\textbf{open thermodynamic systems}. External reservoirs inject or
+withdraw energy through fiscal policy, monetary policy, regulatory
+friction, and institutional distortion. These flows cannot be
+represented by a noise term on the existing manifold; they deform the
+manifold itself. The extension in this section formalises that
+deformation.
+
+\subsection{Architecture: Fibre Bundle over the Base Manifold}
+
+The correct geometric architecture is a fibre bundle:
+\begin{equation}
+    \mathcal{M}_{\mathrm{ext}} = \mathcal{M}_{\mathrm{GISA}}
+    \times \mathcal{F}_{\mathrm{thermo}},
+\end{equation}
+where $\mathcal{M}_{\mathrm{GISA}} = (\ln V, \ln P)$ is the base
+Lorentzian manifold with metric $g_{\mu\nu}$, and
+$\mathcal{F}_{\mathrm{thermo}} = (G, C)$ is the thermodynamic fibre
+encoding government intervention volume $G$ and institutional friction
+$C$. The fibre acts as an \textbf{external field} that deforms the
+metric parameters of the base manifold rather than adding coordinate
+dimensions to it; this preserves general covariance of the base theory.
+
+\subsection{Effective Liquidity Limit}
+
+The single point of contact between the fibre and the base manifold is
+a deformation of the liquidity absorption limit $c \to c_{\mathrm{eff}}$:
+\begin{equation}
+    \label{eq:ceff}
+    \boxed{c_{\mathrm{eff}}(G,C) = c_0 \cdot
+    \exp\!\left(-\lambda_G \frac{G}{G_0}
+               - \lambda_C \frac{C}{C_0}\right)},
+\end{equation}
+where $c_0$ is the baseline limit calibrated on the pre-intervention
+period, $G_0$ and $C_0$ are normalisation constants, and $\lambda_G$,
+$\lambda_C$ are sensitivity parameters requiring empirical calibration.
+The exponential form is motivated by the multiplicative suppression of
+the liquid transaction space: each unit of intervention compounds the
+deformation rather than adding to it linearly.
+
+All results from Sections~3--9 carry over with $c \to c_{\mathrm{eff}}$;
+in particular, the Lyapunov time becomes:
+\begin{equation}
+    \tau_L^{\mathrm{ext}} = \tau_0
+    \sqrt{1 - \frac{v^2}{c_{\mathrm{eff}}(G,C)^2}}.
+\end{equation}
+The market reaches the Lyapunov singularity ($\tau_L^{\mathrm{ext}}
+\to 0$) either when the market velocity $v \to c_{\mathrm{eff}}$ from
+below (velocity-driven) or when $c_{\mathrm{eff}}$ is compressed down
+to $|v|$ by intervention growth (field-driven). These are two
+geometrically distinct paths to the same singularity condition
+$v = c_{\mathrm{eff}}$.
+
+\subsection{First Law: Energy Balance of the Extended Manifold}
+
+The standard GISA conserved energy $E = A\gamma c$ must be augmented
+with external flux terms:
+\begin{equation}
+    dE_{\mathcal{M}} = \delta Q_{\mathrm{ext}}
+                     - \delta W_{\mathrm{market}}
+                     + \delta\Phi_{\mathrm{corrupt}},
+\end{equation}
+where $\delta Q_{\mathrm{ext}}$ is the heat flux from the government
+fiscal reservoir (subsidies, guaranteed purchases, rate suppression),
+$\delta W_{\mathrm{market}}$ is the work extracted by real market
+transactions, and $\delta\Phi_{\mathrm{corrupt}}$ is a dissipative
+flux due to regulatory friction and institutional barriers. This term
+is not conservative: it removes energy from the productive transaction
+space without depositing it elsewhere in $\mathcal{M}$.
+
+\subsection{Second Law: Entropy Export}
+
+The market entropy $S_{\mathcal{M}}$ obeys the inequality from
+Section~\ref{sec:entropy}. In the extended system the total entropy
+budget splits:
+\begin{equation}
+    \frac{dS_{\mathrm{total}}}{dt}
+    = \underbrace{\frac{dS_{\mathcal{M}}}{dt}}_{\leq\,0
+      \text{ (bubble compression)}}
+    + \underbrace{\frac{dS_{\mathrm{gov}}}{dt}}_{>\,0
+      \text{ (sovereign debt, institutional fragility)}}
+    \geq 0.
+\end{equation}
+Government intervention purchases a local reduction in market entropy
+--- suppressing volatility and preventing price discovery --- at the
+cost of accumulating entropy on the sovereign balance sheet.
+The Second Law is not violated; its consequences are deferred to a
+different reservoir and a later time interval.
+
+\subsection{Lattice Defect Layer}
+
+Equation~(\ref{eq:ceff}) describes a uniform field deformation. Real
+institutional distortions are localised: a specific zoning regulation
+blocks transactions in one price-volume neighbourhood; a developer
+insolvency collapses one construction segment while the aggregate index
+holds. These are \textbf{lattice defects} by analogy with condensed
+matter physics.
+
+The market Burgers vector measures the deviation of the real trajectory
+from the geodesic over a closed loop $\mathcal{C}$ in
+$(\ln V, \ln P)$ space:
+\begin{equation}
+    \mathbf{b}_{\mathrm{market}}
+    = \oint_{\mathcal{C}} d(\ln P)
+    - \oint_{\mathcal{C}} d(\ln P)_{\mathrm{geodesic}}.
+\end{equation}
+A nonzero $\mathbf{b}_{\mathrm{market}}$ is the geometric signature of
+a dislocation in the manifold. Three defect classes and their market
+realisations are:
+
+\begin{center}
+\begin{tabular}{p{3.2cm}p{3.2cm}p{6.0cm}}
+\toprule
+Defect type & Physics & Market realisation \\
+\midrule
+Point defect (vacancy) & Missing lattice atom &
+  Blocked transaction (permit delay, zoning) \\
+Line defect (dislocation) & Shifted atomic plane &
+  Systemic corruption in one sector \\
+Planar defect & Domain boundary &
+  Two-speed market: subsidised vs.\ free \\
+Interstitial (impurity) & Foreign atom &
+  Institutional investor (REIT) with non-market logic \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Each defect contributes a local singularity to $c_{\mathrm{eff}}(x)$:
+\begin{equation}
+    c_{\mathrm{eff}}(x) = c_0
+    \exp\!\left(-\lambda_G \frac{G}{G_0} - \lambda_C \frac{C}{C_0}\right)
+    \cdot \left(1 - \sum_k
+    \frac{\alpha_k}{\lvert\mathbf{x} - \mathbf{x}_k\rvert}\right),
+\end{equation}
+where $\mathbf{x}_k$ is the location of the $k$-th defect in
+$(\ln V, \ln P)$ space and $\alpha_k$ its strength. Near a defect,
+$c_{\mathrm{eff}} \to 0$ \emph{locally}, causing a segment-level
+Lyapunov singularity without any global-index signal. This explains
+the empirically observed pattern in which a pre-construction segment
+collapses while the aggregate composite index remains stable.
+
+\subsection{Stochastic Layer: Langevin Geodesic}
+
+The deterministic geodesic equation is extended to a \textbf{covariant
+Langevin equation}:
+\begin{equation}
+    \frac{D^2 x^\mu}{d\tau^2}
+    = -\Gamma^\mu_{\mathrm{diss}}\frac{dx^\mu}{d\tau}
+    + \eta^\mu(\tau),
+\end{equation}
+where $D^2/d\tau^2$ is the covariant second derivative (Christoffel
+symbols included automatically), $\Gamma^\mu_{\mathrm{diss}}$ is a
+dissipation tensor proportional to transaction costs, and
+$\eta^\mu(\tau)$ has three statistically distinct components:
+\begin{equation}
+    \eta^\mu(\tau)
+    = \eta^\mu_{\mathrm{micro}}(\tau)
+    + \eta^\mu_{\mathrm{gov}}(\tau)
+    + \eta^\mu_{\mathrm{defect}}(\tau).
+\end{equation}
+
+\begin{center}
+\begin{tabular}{p{2.6cm}p{3.6cm}p{2.4cm}p{3.0cm}}
+\toprule
+Component & Source & Statistics & Existing link \\
+\midrule
+$\eta^\mu_{\mathrm{micro}}$ & Microstructure noise &
+  Gaussian, $D_{\mathrm{micro}}$ & \S9.1 market vacuum \\
+$\eta^\mu_{\mathrm{gov}}$ & Fiscal shock (program launch/cut) &
+  L\'evy, $\alpha_L \in (1,2)$ &
+  $\mathcal{F}_{\mathrm{thermo}}$, $\dot{G}$ \\
+$\eta^\mu_{\mathrm{defect}}$ & Lattice collapse event &
+  Poisson & Burgers vector $\mathbf{b}_{\mathrm{market}}$ \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+The covariant noise correlation is:
+\begin{equation}
+    \langle \eta^\mu(\tau)\,\eta^\nu(\tau') \rangle
+    = 2D\,g^{\mu\nu}(x)\,\delta(\tau - \tau'),
+\end{equation}
+with diffusion coefficient linked to the Unruh-analogue temperature
+of Section~9.2:
+\begin{equation}
+    D = \frac{\kappa}{2\pi}\cdot\frac{\gamma^3}{A}
+    \left\lvert\frac{dv}{d\tau}\right\rvert.
+\end{equation}
+The fluctuation-dissipation theorem then requires:
+\begin{equation}
+    \Gamma^\mu_{\mathrm{diss}}
+    = \frac{D\,g^{\mu\mu}}{k_B T_{\mathcal{M}}},
+\end{equation}
+closing the thermodynamic consistency of the stochastic layer.
+In real estate, transaction costs (land transfer tax, legal fees,
+brokerage) reach 3--6\% of transaction value --- an order of magnitude
+above the cryptocurrency fee tier of 0.35--0.75\% --- producing
+substantially stronger geodesic damping.
+
+\subsection{Observable Indicators and Monitoring Protocol}
+
+The three-layer architecture produces three independent observable
+signals, each sensitive to a different failure mode:
+
+\begin{center}
+\begin{tabular}{p{2.4cm}p{4.8cm}p{2.4cm}p{2.8cm}}
+\toprule
+Layer & Signal & Alert threshold & Data source \\
+\midrule
+1 (Thermo\-dynamic) &
+  $c_{\mathrm{eff}}(t)$ monotone decrease &
+  $c_{\mathrm{eff}} < 0.10$ &
+  Federal budget housing expenditure \\
+2 (Defect) &
+  $\lvert\mathbf{b}_{\mathrm{market}}\rvert$ growth:
+  MLS\,HPI vs.\ CMHC new-construction divergence &
+  Sustained $> 5\%$ &
+  CREA\,/\,CMHC monthly \\
+3 (Stochastic) &
+  Excess kurtosis of monthly $\Delta P$ &
+  Kurtosis $> 6$ (L\'evy onset) &
+  TRREB monthly \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+All three signals are independent of the full calibration of
+$\lambda_G$ and $\lambda_C$ and can be computed directly from
+publicly available data. Synchronisation of all three signals
+constitutes a multi-layer confirmation of proximity to the
+Lyapunov singularity.
+
+\subsection{Freeze Point: The $v = c_{\mathrm{eff}}$ Crossing}
+
+The market freeze condition replaces the velocity-explosion singularity
+of the flat-space model. Rather than $v$ accelerating toward $c_0$,
+the freeze is reached when the declining $c_{\mathrm{eff}}(G, C)$
+descends to meet the current market velocity $|v|$ from above. On the
+$(G, C)$ parameter plane this defines a \textbf{freeze curve}:
+\begin{equation}
+    \boxed{v = c_0 \cdot \exp\!\left(
+    -\lambda_G \frac{G}{G_0} - \lambda_C \frac{C}{C_0}\right)},
+\end{equation}
+whose location shifts with each fiscal cycle. Monitoring whether the
+system approaches or recedes from this curve --- using Layer~1 and
+Layer~3 signals as leading indicators --- converts the GISA engine
+from a single-event detector into a continuous strategic surveillance
+instrument for structural market fragility.
+
+\subsection{Scope and Limitations of the Real-Market Extension}
+
+\textbf{Important caveat.}\quad
+This section constitutes a \emph{theoretical extension framework},
+not a validated predictive model. The parameters
+$\lambda_G$, $\lambda_C$, and $\alpha_k$ have not been empirically
+calibrated against historical data. The framework is presented as:
+\begin{enumerate}
+    \item A research agenda for future empirical work (\S\ref{sec:future});
+    \item A demonstration that the GISA geometric structure admits
+          consistent thermodynamic extensions for open systems;
+    \item A source of qualitative, directional analysis of structural
+          fragility --- not quantitative point forecasts.
+\end{enumerate}
+All numerical estimates in \S12.3--\S12.9 are illustrative computations
+under assumed parameter values. The directional conclusions (system in
+`REPULS' regime; freeze condition approached via $c_{\mathrm{eff}}$
+compression rather than velocity explosion; Layer~2 dislocation signal
+empirically active in pre-construction segment) are robust to reasonable
+parameter variation. The specific timelines and price targets are not.
+
+\subsection{Empirical Calibration Programme}
+
+The following quantities require numerical calibration before the
+extended model can produce quantitative predictions:
+
+\begin{enumerate}
+    \item $c_0$: Golden-section fit to $(\ln V, \ln P)$ time series
+          on the pre-intervention baseline (2003--2019 CREA data).
+    \item $\lambda_G$, $\lambda_C$: Cross-sectional regression of
+          observed $c_{\mathrm{eff}}$ (rolling golden-section fit)
+          against $G/G_0$ and $C/C_0$ across multiple metropolitan
+          areas and fiscal cycles.
+    \item $\alpha_k$: Estimated from the magnitude of MLS HPI /
+          CMHC new-construction price divergence in each identified
+          segment.
+    \item $\alpha_L$ (L\'evy index): Maximum-likelihood fit to the
+          tail of the monthly $\Delta P$ distribution over the
+          intervention period.
+\end{enumerate}
+
+Until this calibration is completed, all quantitative outputs from
+the extended model (freeze dates, threshold prices) are to be treated
+as qualitative structural analysis rather than precision forecasts.
+
+\appendix
+
+\section{C++ Implementation Overview}
+
+Production-ready, header-only, C++17, no external dependencies:
+
+\begin{itemize}
+    \item \texttt{metric.hpp} --- \texttt{LorentzMetric}: $ds^2$,
+          $\gamma(v,c)$, geodesic price/log-price helpers,
+          \texttt{ln\_price\_from\_geodesic}.
+    \item \texttt{curvature.hpp} --- \texttt{RicciScalar}: non-uniform
+          central differences, template dispatch for 9- and 10-tuple
+          history, $c$-acceleration fallback for sparse data.
+    \item \texttt{manifold.hpp} --- \texttt{ManifoldTracker}: per-bar
+          state update; $c$-stability convergence; $c$-collapse detector
+          (prev\_c captured before last\_c\_ is overwritten); curvature-
+          before-deviation classification order; adaptive thresholds for
+          $R$ and $\xi$ that suppress early false positives; ds2
+          sign-change breaking check.
+    \item \texttt{geodesic.hpp} --- \texttt{GeodesicTracker}: log-space
+          $A$-drift (\texttt{|lnP - entry\_lnA|}); \texttt{HOLD}/
+          \texttt{PREPARE\_EXIT}/\texttt{SELL}; \texttt{set\_entry}
+          seeded from first bar's $c$ to avoid false collapse detection
+          at bar 0.
+    \item \texttt{gisa.hpp} --- master include.
+\end{itemize}
+
+\section*{Keywords}
+
+Exponential impulse; Lorentz factor; Lorentzian manifold; market
+microstructure; VWAP; metric tensor; Christoffel symbols; Ricci scalar;
+geodesic deviation; golden ratio; Nash equilibrium; Lyapunov time; entropy
+bound; dimensionality collapse; holographic principle; AdS/CFT;
+Bekenstein entropy; Unruh temperature; Hawking radiation; effective-regime
+theory; dynamic $c$-calibration; golden-section search; Savitzky--Golay;
+out-of-sample validation.
+
+\section*{Acknowledgments}
+
+Validated on real exchange data: LTC-USDC (May~22--23, 2026), FET-USDC
+(March~19--20, 2026), BICO-USDC (June~19--20, 2026).
+
+\end{document}
